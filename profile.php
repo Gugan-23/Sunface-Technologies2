@@ -330,7 +330,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
                 <i class="fas fa-envelope"></i>
                 <div class="detail-content">
                     <span class="detail-label">Email</span>
-                    <div><?= htmlspecialchars($user_data['email']) ?></div>
+                    <div><?= htmlspecialchars($user_data['email'] ?? '') ?></div>
+
                     <?php if ($_SESSION['login_method'] === 'google'): ?>
                         <small>(Google account email cannot be changed)</small>
                     <?php endif; ?>
@@ -357,7 +358,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
                 <i class="fas fa-map-marker-alt"></i>
                 <div class="detail-content">
                     <span class="detail-label">Address</span>
-                    <div class="view-mode"><?= $user_data['address'] ? nl2br(htmlspecialchars($user_data['address'])) : 'Not provided' ?></div>
+<div class="view-mode">
+    <?= isset($user_data['address']) && $user_data['address'] !== '' ? nl2br(htmlspecialchars($user_data['address'])) : 'Not provided' ?>
+</div>
                     <textarea name="address" class="edit-mode" rows="3"><?= htmlspecialchars($user_data['address']) ?></textarea>
                 </div>
             </div>
