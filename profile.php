@@ -72,6 +72,12 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     if ($_SESSION['login_method'] !== 'otp') {
         $update_query .= ", mobile = '$mobile'";
     }
+
+    // Allow email update only for OTP login
+    if ($_SESSION['login_method'] === 'otp') {
+        $email = $conn->real_escape_string($_POST['email']);
+        $update_query .= ", email = '$email'";
+    }
     
     $update_query .= " WHERE id = '$user_id'";
 
@@ -279,11 +285,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
     font-weight: 600;
     color: #101d42;
 }
-
-/* Hide logout button in edit mode */
-.edit-active .btn-logout {
-    display: none !important;
-}
     </style>
 </head>
 <body>
@@ -330,10 +331,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
                 <i class="fas fa-envelope"></i>
                 <div class="detail-content">
                     <span class="detail-label">Email</span>
-                    <div><?= htmlspecialchars($user_data['email'] ?? '') ?></div>
-
-                    <?php if ($_SESSION['login_method'] === 'google'): ?>
-                        <small>(Google account email cannot be changed)</small>
+                    <?php if ($_SESSION['login_method'] === 'otp'): ?>
+                        <div class="view-mode"><?= htmlspecialchars($user_data['email'] ?: 'Not provided') ?></div>
+                        <input type="email" name="email" class="edit-mode" value="<?= htmlspecialchars($user_data['email']) ?>" required>
+                        <small>(You can add or update your email)</small>
+                    <?php else: ?>
+                        <div><?= htmlspecialchars($user_data['email']) ?></div>
+                        <?php if ($_SESSION['login_method'] === 'google'): ?>
+                            <small>(Google account email cannot be changed)</small>
+                        <?php endif; ?>
                     <?php endif; ?>
                 </div>
             </div>
@@ -358,10 +364,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
                 <i class="fas fa-map-marker-alt"></i>
                 <div class="detail-content">
                     <span class="detail-label">Address</span>
-<div class="view-mode">
-    <?= isset($user_data['address']) && $user_data['address'] !== '' ? nl2br(htmlspecialchars($user_data['address'])) : 'Not provided' ?>
-</div>
-                    <textarea name="address" class="edit-mode" rows="3"><?= htmlspecialchars($user_data['address']) ?></textarea>
+                    <div class="view-mode"><?= $user_data['address'] ? nl2br(htmlspecialchars($user_data['address'])) : 'Not provided' ?></div>
+                    <textarea name="address" class="edit-mode" rows="3" 
+                        <?php if ($_SESSION['login_method'] === 'otp'): ?>required<?php endif; ?>
+                    ><?= htmlspecialchars($user_data['address']) ?></textarea>
+                    <?php if ($_SESSION['login_method'] === 'otp'): ?>
+                        <small>(You can add or update your address)</small>
+                    <?php endif; ?>
                 </div>
             </div>
 
