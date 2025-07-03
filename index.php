@@ -835,7 +835,7 @@ if (isset($_SESSION['user_id'])) {
   <a href="about.php">About Us</a>
   <a href="contact.php">Contact Us</a>
   <?php if ($isLoggedIn): ?>
-    <a href="raise_tickets.php">Tickets</a>
+    <a href="raise_ticket.php">Tickets</a>
     <a href="profile.php">Profile</a>
   <?php else: ?>
     <a href="login.php">Account</a>
