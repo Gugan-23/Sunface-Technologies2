@@ -1,0 +1,81 @@
+.admin-form {
+    background: #fff;
+    max-width: 400px;
+    margin: 30px auto 20px auto;
+    padding: 24px 28px;
+    border-radius: 12px;
+    box-shadow: 0 4px 16px rgba(16,29,66,0.08);
+}
+.admin-form input,
+.admin-form select,
+.admin-form button,
+.admin-form textarea {
+    width: 100%;
+    margin-bottom: 16px;
+    padding: 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 1rem;
+    font-family: 'Poppins', sans-serif;
+}
+.admin-form button {
+    background: #e10000;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+.admin-form button:hover {
+    background: #ff512f;
+}
+.admin-form img {
+    max-width: 150px;
+    margin-bottom: 10px;
+    display: block;
+}
+.plans-table {
+    width: 98%;
+    margin: 0 auto 40px auto;
+    border-collapse: collapse;
+    background: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(16,29,66,0.08);
+}
+.plans-table th,
+.plans-table td {
+    padding: 12px 10px;
+    border-bottom: 1px solid #eee;
+    text-align: center;
+}
+.plans-table th {
+    background: #101d42;
+    color: #fff;
+}
+.plans-table tr:last-child td {
+    border-bottom: none;
+}
+.plans-table img {
+    max-width: 100px;
+    border-radius: 8px;
+}
+.action-links a {
+    color: #e10000;
+    font-weight: 600;
+    margin: 0 6px;
+    text-decoration: none;
+}
+.action-links a:hover {
+    text-decoration: underline;
+}
+@media (max-width: 700px) {
+    .admin-form,
+    .plans-table {
+        width: 100%;
+    }
+    .plans-table th,
+    .plans-table td {
+        font-size: 0.95rem;
+    }
+}

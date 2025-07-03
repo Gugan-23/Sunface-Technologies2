@@ -1,0 +1,204 @@
+/* General Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Body Styling */
+body {
+  background: linear-gradient(135deg, #e10000 0%, #ff512f 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
+}
+
+/* Form Container */
+.form-container {
+  background: #fff;
+  border-radius: 22px;
+  padding: 36px 28px 28px 28px;
+  width: 100%;
+  max-width: 370px;
+  box-shadow: 0 8px 32px rgba(225,0,0,0.13);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: fadeInUp 0.7s cubic-bezier(.23,1.01,.32,1) both;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+
+/* Form Title */
+.form-container h2 {
+  text-align: center;
+  color: #e10000;
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.form-container h2::before {
+  content: "📝";
+  font-size: 1.3em;
+  margin-right: 6px;
+  opacity: 0.85;
+}
+
+/* Input and Textarea Fields */
+.form-container input,
+.form-container textarea {
+  width: 100%;
+  padding: 13px 16px 13px 42px;
+  margin-bottom: 16px;
+  border: none;
+  border-radius: 14px;
+  background-color: #fff0f0;
+  font-size: 1rem;
+  color: #222;
+  outline: none;
+  box-shadow: 0 2px 8px rgba(225,0,0,0.06);
+  transition: box-shadow 0.18s, background 0.18s;
+  position: relative;
+}
+
+.form-container input:focus,
+.form-container textarea:focus {
+  background: #ffeaea;
+  box-shadow: 0 4px 16px rgba(225,0,0,0.13);
+}
+
+/* Icon for each input */
+.form-container .input-icon {
+  position: absolute;
+  left: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 1.1em;
+  color: #e10000;
+  opacity: 0.85;
+  pointer-events: none;
+}
+
+/* Input Wrapper for icon positioning */
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+/* Placeholder Styling */
+.form-container input::placeholder,
+.form-container textarea::placeholder {
+  color: #e10000;
+  font-size: 0.98em;
+  opacity: 0.7;
+}
+
+/* Submit Button */
+.form-container button {
+  width: 100%;
+  padding: 14px;
+  border: none;
+  border-radius: 30px;
+  background: linear-gradient(90deg, #e10000 0%, #ff512f 100%);
+  color: #fff;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: background 0.18s, box-shadow 0.18s, transform 0.12s;
+  box-shadow: 0 4px 16px rgba(225,0,0,0.13);
+  margin-top: 8px;
+  letter-spacing: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.form-container button::before {
+  content: "🔒";
+  font-size: 1.1em;
+  margin-right: 6px;
+  opacity: 0.85;
+}
+
+.form-container button:hover,
+.form-container button:focus {
+  background: linear-gradient(90deg, #ff512f 0%, #e10000 100%);
+  color: #fff;
+  transform: scale(1.04);
+  box-shadow: 0 8px 32px rgba(225,0,0,0.18);
+}
+
+/* Error Message Styling */
+.message.error {
+  background-color: #f8d7da;
+  color: #e10000;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 10px;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(225,0,0,0.06);
+}
+
+/* Success Message Styling */
+.message.success {
+  background-color: #e6ffed;
+  color: #1a7f37;
+  padding: 12px;
+  border-radius: 12px;
+  margin-top: 10px;
+  font-size: 1rem;
+  text-align: center;
+  font-weight: 600;
+  box-shadow: 0 2px 8px rgba(34,197,94,0.06);
+}
+
+/* Mobile Responsive Styles */
+@media screen and (max-width: 480px) {
+  body {
+    padding: 10px;
+    align-items: flex-start;
+  }
+
+  .form-container {
+    padding: 20px 10px;
+    border-radius: 16px;
+    max-width: 98vw;
+  }
+
+  .form-container h2 {
+    font-size: 1.3rem;
+    margin-bottom: 18px;
+  }
+
+  .form-container input,
+  .form-container textarea {
+    font-size: 0.98rem;
+    padding: 11px 12px 11px 38px;
+  }
+
+  .form-container button {
+    font-size: 1rem;
+    padding: 12px;
+  }
+
+  .message.error,
+  .message.success {
+    font-size: 0.98rem;
+  }
+}
