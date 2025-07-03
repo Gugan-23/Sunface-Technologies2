@@ -126,7 +126,7 @@ if (isset($_GET['otp_login'])) {
         // Create new user with mobile number
         $defaultPassword = password_hash(bin2hex(random_bytes(8)), PASSWORD_DEFAULT);
         $defaultName = 'User';
-        $defaultEmail = '';
+        $defaultEmail = null; // <-- FIXED: use null instead of empty string
         $insert_stmt = $conn->prepare(
             "INSERT INTO signup (name, email, password, mobile, login_method, created) 
             VALUES (?, ?, ?, ?, ?, NOW())"
@@ -135,6 +135,13 @@ if (isset($_GET['otp_login'])) {
         $insert_stmt->execute();
         $user_id = $conn->insert_id;
         $insert_stmt->close();
+
+        // Set default user data
+        $user = [
+            'email' => '',
+            'name' => 'User',
+            'address' => ''
+        ];
     } else {
         // User exists, get their data
         $user = $result->fetch_assoc();
@@ -157,6 +164,7 @@ if (isset($_GET['otp_login'])) {
         'type' => 'success',
         'message' => 'Welcome' . (isset($user['name']) ? ', ' . $user['name'] : '') . '!'
     ];
+
 
     // Redirect like Google login (close modal or popup and redirect parent)
 echo '<!DOCTYPE html>
